@@ -1,11 +1,13 @@
-from recipe_manager import add_recipe, list_recipes
+from recipe_manager import add_recipe, list_recipes, select_recipes
+from unit_converter import convert
 
 def main():
     while True:
         print("\nRecipe Manager")
         print("1. Add Recipe")
         print("2. List Recipes")
-        print("3. Exit")
+        print("3. Select Recipes for Shopping List")
+        print("4. Exit")
         
         choice = input("Choose an option: ").strip()
         
@@ -14,6 +16,8 @@ def main():
         elif choice == '2':
             list_recipes()
         elif choice == '3':
+            select_recipes()
+        elif choice == '4':
             print("Exiting the Recipe Manager. Goodbye!")
             break
         else:

@@ -1,5 +1,7 @@
+from grocery_list_builder import build_grocery_list
 from models import Recipe, Ingredient
 from data_store import load_recipes, save_recipes
+from typing import List, Tuple
 
 def add_recipe() -> None:
     """Add a new recipe to the collection."""
@@ -47,3 +49,45 @@ def list_recipes():
     print("Recipes:")
     for recipe in recipes:
         print(recipe)
+
+def select_recipes() -> List[Tuple[Recipe, int]]:
+    """Select recipes and their quantities for a shopping list."""
+    recipes = load_recipes()
+    selected_recipes = []
+
+    if not recipes:
+        print("No recipes available to select.")
+        return selected_recipes
+
+    print("Available Recipes:")
+    for i, recipe in enumerate(recipes):
+        print(f"{i + 1}. {recipe.name}")
+
+    while True:
+        try:
+            choice = input("Select a recipe by number (or 'done' to finish): ").strip()
+            if choice.lower() == 'done':
+                break
+            index = int(choice) - 1
+            if index < 0 or index >= len(recipes):
+                raise IndexError("Invalid recipe number.")
+            servings = int(input(f"Enter Servings for {recipes[index].name}: "))
+            if servings <= 0:
+                raise ValueError("Servings must be a positive integer.")
+            selected_recipes.append((recipes[index], servings))
+        except (ValueError, IndexError) as e:
+            print(f"Error: {e}. Please try again.")
+
+    if selected_recipes:
+        print("Selected Recipes for Shopping List:")
+        for recipe, servings in selected_recipes:
+            print(f"{recipe.name} - Servings: {servings}")
+
+        grocery_list = build_grocery_list(selected_recipes= selected_recipes)
+        print("\nGrocery List:")
+        for ingredient, (quantity, unit) in grocery_list.items():
+            print(f"{quantity} {unit} of {ingredient}")
+    else:
+        print("No recipes selected.")
+
+    return selected_recipes
