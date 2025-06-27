@@ -160,7 +160,7 @@ def edit_recipe():
     try:
         choice = int(input("Enter the number of the recipe to edit: ")) - 1
         if not (0 <= choice < len(recipes)):
-            print("⚠️ Invalid recipe number.")
+            print("Invalid recipe number.")
             return
 
         recipe = recipes[choice]
@@ -174,7 +174,7 @@ def edit_recipe():
             if new_servings:
                 recipe.servings = int(new_servings)
         except ValueError:
-            print("⚠️ Invalid input. Keeping old servings.")
+            print("Invalid input. Keeping old servings.")
 
         print("Do you want to update ingredients? (y/n)")
         if input("> ").strip().lower() == "y":
@@ -191,11 +191,11 @@ def edit_recipe():
                         unit = "count"
                     ingredients.append({"name": name, "amount": amount, "unit": unit})
                 except ValueError:
-                    print("⚠️ Invalid amount. Try again.")
+                    print("Invalid amount. Try again.")
             recipe.ingredients = [Ingredient(**ing) for ing in ingredients]
 
         save_recipes(recipes)
-        print("✅ Recipe updated!")
+        print("Recipe updated!")
 
     except ValueError:
-        print("⚠️ Invalid input.")
+        print("Invalid input.")
