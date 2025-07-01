@@ -15,5 +15,5 @@ def convert(amount: float, from_unit: str, to_unit: str) -> float:
         quantity = Q_(amount, from_unit)
         converted_quantity = quantity.to(to_unit)
         return float(math.ceil(converted_quantity.magnitude))
-    except Exception as e:
-        raise ValueError(f"Conversion error: {e}")
+    except Exception:
+        return None

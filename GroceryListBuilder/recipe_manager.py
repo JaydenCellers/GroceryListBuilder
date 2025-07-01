@@ -1,6 +1,6 @@
-from grocery_list_builder import build_grocery_list
-from models import Recipe, Ingredient
-from data_store import load_recipes, save_recipes
+from GroceryListBuilder.grocery_list_builder import build_grocery_list
+from GroceryListBuilder.models import Recipe, Ingredient
+from GroceryListBuilder.data_store import load_recipes, save_recipes
 from typing import List, Tuple
 
 def add_recipe() -> None:

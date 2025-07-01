@@ -1,1 +1,4 @@
 data/recipes.json
+__pycache__/
+*.pyc
+data copy/recipes.json

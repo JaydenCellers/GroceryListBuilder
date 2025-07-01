@@ -1,8 +1,7 @@
 from collections import defaultdict
 from typing import List, Dict, Tuple
-from models import Recipe, Ingredient
-from data_store import load_recipes
-from unit_converter import convert
+from GroceryListBuilder.models import Recipe
+from GroceryListBuilder.unit_converter import convert
 
 def build_grocery_list(selected_recipes: List[Tuple[Recipe, int]]) -> Dict[str, Tuple[float, str]]:
     """Build a grocery list from selected recipes."""
